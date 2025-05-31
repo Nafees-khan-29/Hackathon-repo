@@ -1,0 +1,78 @@
+.mobile-restriction-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000000;
+  z-index: 9999;
+  padding: 2rem;
+}
+
+.restriction-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  color: #ffffff;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.mobile-icon, .desktop-icon {
+  font-size: 3rem;
+  color: #ff0000;
+}
+
+.mobile-icon {
+  animation: shakeDevice 2s ease-in-out infinite;
+}
+
+.desktop-icon {
+  animation: pulseIcon 2s ease-in-out infinite;
+}
+
+.restriction-content h2 {
+  font-size: 1.5rem;
+  color: #ff0000;
+  margin: 0;
+}
+
+.restriction-content p {
+  font-size: 1rem;
+  color: #ffffff;
+  max-width: 300px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+@keyframes shakeDevice {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-20deg); }
+  75% { transform: rotate(20deg); }
+}
+
+@keyframes pulseIcon {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Show overlay on mobile devices */
+@media (max-width: 768px) {
+  .mobile-restriction-overlay {
+    display: block;
+  }
+
+  /* Hide all other content */
+  #root > *:not(.mobile-restriction-overlay) {
+    display: none !important;
+  }
+}
